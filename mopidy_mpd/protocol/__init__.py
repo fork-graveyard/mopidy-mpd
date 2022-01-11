@@ -37,6 +37,7 @@ def load_protocol_modules():
         current_playlist,
         mount,
         music_db,
+        partition,
         playback,
         reflection,
         status,
