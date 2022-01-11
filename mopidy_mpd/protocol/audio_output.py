@@ -68,3 +68,20 @@ def outputs(context):
         ("outputname", "Mute"),
         ("outputenabled", muted),
     ]
+
+
+@protocol.commands.add("outputset", outputid=protocol.UINT)
+def outputset(context, outputid, name, value):
+    """
+    *musicpd.org, audio output section:*
+
+        ``outputset {ID} {NAME} {VALUE}``
+
+        Set a runtime attribute. These are specific to the output plugin, and
+        supported values are usually printed in the ``outputs`` response.
+    """
+    if outputid == 0:
+        # We don't use this part of MPD, treat everything read-only.
+        raise exceptions.MpdNotImplemented
+    else:
+        raise exceptions.MpdNoExistError("No such audio output")
